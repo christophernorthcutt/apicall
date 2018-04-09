@@ -1,7 +1,7 @@
 {
-  "name": "apiproject",
+  "name": "apicall",
   "version": "1.0.0",
-  "description": "Chris Northcutt project for Adobe Software Test",
+  "description": "Christopher Northcutt API project",
   "main": "app.js",
   "scripts": {
     "test": "mocha"
