@@ -1,0 +1,38 @@
+doctype html
+html
+	head
+	title Chris Northcutt API Project
+	script(src="/jquery/jquery.js")
+	style
+		include style.css
+body
+h1 Chris Northcutt API Project
+form(id="mainForm", method="GET")
+	label(for="name") Enter a name:
+	input(id="search", name="search")
+	button(type="submit") Search
+table(id="dataTable")
+	each val in json
+		tr
+			td #{val}
+script.
+	$(document).ready(function() {
+		$("#mainForm").submit(function(e) {
+			e.preventDefault();
+			let searchText = document.getElementById("search").value;
+			$.ajax({
+				url: "api/names?search=" + searchText,
+				success: function (data) {
+					if (data[0]) {
+						document.getElementById("dataTable").innerHTML = "";
+						for (let i in data) {
+							$("#dataTable").append("<tr><td>" + data[i] + "</td></tr>");
+						}
+					}
+					else {
+						document.getElementById("dataTable").innerHTML = "No result(s)";
+					}
+				}
+			});
+		});
+	});
